@@ -8,6 +8,7 @@ import app.routes.Routes;
 import app.security.controllers.AuthController;
 import app.security.controllers.UserController;
 import app.security.dao.UserDAO;
+import app.security.middleware.JwtMiddleware;
 import app.security.services.AuthService;
 import app.security.services.UserService;
 import app.services.HotelService;
@@ -30,6 +31,14 @@ public class Main {
 
         // Start Javalin-server
         Javalin app = Javalin.create().start(7070);
+
+
+        // Middlware til at beskytte endpoints
+        app.before("hotel", new JwtMiddleware());   // Beskyt kun hotel-POST, PUT, DELETE
+        app.before("hotel/{id}", new JwtMiddleware()); // Beskyt kun endpoints, der kræver ID
+        app.before("hotel/{id}/rooms", new JwtMiddleware()); // Beskyt tilføjelse af værelser
+        app.before("hotel/{hotelId}/rooms/{roomId}", new JwtMiddleware()); // Beskyt fjernelse af værelser
+
 
         // Registrer ruter via Routes-klassen
         new Routes(hotelController, roomController).registerRoutes(app);

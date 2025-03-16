@@ -93,14 +93,25 @@ public class HibernateConfig {
     }
 
     private static Properties setDevProperties(Properties props) {
-        String DBName = Utils.getPropertyValue("DB_NAME", "config.properties");
+        String DB_HOST = Utils.getPropertyValue("DB_HOST", "config.properties");
+        String DB_PORT = Utils.getPropertyValue("DB_PORT", "config.properties");
+        String DB_NAME = Utils.getPropertyValue("DB_NAME", "config.properties");
         String DB_USERNAME = Utils.getPropertyValue("DB_USERNAME", "config.properties");
         String DB_PASSWORD = Utils.getPropertyValue("DB_PASSWORD", "config.properties");
-        props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/" + DBName);
+        String DB_SSLMODE = Utils.getPropertyValue("DB_SSLMODE", "config.properties");
+
+        String jdbcUrl = "jdbc:postgresql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME
+                + "?user=" + DB_USERNAME
+                + "&password=" + DB_PASSWORD
+                + "&sslmode=" + DB_SSLMODE;
+
+        props.put("hibernate.connection.url", jdbcUrl);
         props.put("hibernate.connection.username", DB_USERNAME);
         props.put("hibernate.connection.password", DB_PASSWORD);
+
         return props;
     }
+
 
     private static Properties setTestProperties(Properties props) {
         props.put("hibernate.connection.driver_class", "org.testcontainers.jdbc.ContainerDatabaseDriver");

@@ -3,6 +3,7 @@ package app.routes;
 
 import app.models.HotelController;
 import app.models.RoomController;
+import app.security.middleware.JwtMiddleware;
 import io.javalin.apibuilder.ApiBuilder;
 import io.javalin.Javalin;
 
@@ -10,6 +11,7 @@ public class Routes {
 
     private final HotelController hotelController;
     private final RoomController roomController;
+    private final JwtMiddleware jwtMiddleware = new JwtMiddleware(); // Middleware objekt
 
     public Routes(HotelController hotelController, RoomController roomController) {
         this.hotelController = hotelController;
