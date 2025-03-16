@@ -1,0 +1,42 @@
+### Get all hotels
+GET http://localhost:7070/hotel
+
+### Get hotel by ID
+GET http://localhost:7070/hotel/2
+
+### Get rooms for hotel
+GET http://localhost:7070/hotel/2/rooms
+
+### Create a new hotel
+POST http://localhost:7070/hotel
+Content-Type: application/json
+
+{
+  "name": "Hotel 3",
+  "address": "Address 3"
+}
+
+### Update a hotel
+PUT http://localhost:7070/hotel/1
+Content-Type: application/json
+
+{
+  "name": "Hotel renamedHotel",
+  "address": "Address 1"
+}
+
+### Delete a hotel
+DELETE http://localhost:7070/hotel/3
+
+### Add room to hotel
+POST http://localhost:7070/hotel/5/room
+Content-Type: application/json
+
+{
+  "id": 2,
+  "number": 101,
+  "price": 150.0
+}
+
+### Remove room from hotel
+DELETE http://localhost:7070/hotel/1/room/1

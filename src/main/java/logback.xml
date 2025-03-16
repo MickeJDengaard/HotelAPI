@@ -1,0 +1,12 @@
+<configuration>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.hibernate.SQL" level="ERROR"/>
+    <logger name="org.hibernate.type" level="ERROR"/>
+    <logger name="org.hibernate.orm" level="ERROR"/>
+    <logger name="org.eclipse.jetty" level="ERROR"/>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

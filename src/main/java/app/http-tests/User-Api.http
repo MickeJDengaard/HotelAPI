@@ -1,0 +1,30 @@
+# curl -X POST http://localhost:7000/register
+#     -H "Content-Type: application/json"
+#     -d '{"username": "testuser", "password": "test1234"}'
+POST http://localhost:7070/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "test1234"
+}
+
+###
+
+# curl -X POST http://localhost:7070/login
+#     -H "Content-Type: application/json"
+#     -d '{"username": "testuser", "password": "test1234"}'
+POST http://localhost:7070/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "test1234"
+}
+
+###
+
+
+
+###
+
